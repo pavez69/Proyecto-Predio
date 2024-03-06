@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { About } from './components/About'; // Asegúrate de que la ruta sea correcta
+import { About } from './components/About';
 import { Users } from './components/Users';
 import { Navbar } from './components/Navbar';
 import { LoginButton } from './components/Auth';
@@ -15,13 +15,13 @@ export function App() {
   }, [isAuthenticated]);
 
   // Función para manejar el logout
-  const handleLogout = () => {
-    const confirmLogout = window.confirm("¿Estás seguro de que deseas salir de tu sesión?");
-    if (confirmLogout) {
-      logout({ returnTo: window.location.origin }); // Redirigir al origen después del logout
-      setIsLoggedIn(false); // Actualizar el estado de autenticación en la aplicación
-    }
-  };
+const handleLogout = () => {
+  const confirmLogout = window.confirm("¿Estás seguro de que deseas salir de tu sesión?");
+  if (confirmLogout) {
+    logout({ returnTo: window.location.origin }); // Redirigir al origen después del logout
+    setIsLoggedIn(false); // Actualizar el estado de autenticación en la aplicación
+  }
+};
 
   return (
     <Router>
@@ -30,7 +30,7 @@ export function App() {
           <Navbar />
           <div className='container p-2'>
             <Routes>
-              <Route path="/about" element={<About />} /> {/* Asegúrate de que la ruta coincida con el path */}
+              <Route path="/About" element={<About />} />
               <Route path="/" element={<Users />} />
             </Routes>
             <button onClick={handleLogout}  

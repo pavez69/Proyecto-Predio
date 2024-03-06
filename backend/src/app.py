@@ -85,60 +85,6 @@ def updateUser(id):
   }})
   return jsonify({'message': 'User Updated'})
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@app.route('/users/search', methods=['GET'])
-def searchUsersByName():
-    name = request.args.get('name')
-    users = db.find({'name': {'$regex': name, '$options': 'i'}})
-    results = []
-    for user in users:
-        user_data = {
-            '_id': str(user['_id']),
-            'name': user['name'],
-            'email': user['email'],
-            'password': user['password']
-        }
-        # Buscar la imagen asociada al usuario en GridFS
-        user_image = fs.find_one({'_id': user.get('image_id')})
-        if user_image:
-            user_data['image'] = str(user_image._id)  # Obtener el ID de la imagen
-        results.append(user_data)
-    return jsonify(results)
-
-
-
-
-
-
 if __name__ == "__main__":
     app.run(debug=True)
 
